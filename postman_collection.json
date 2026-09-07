@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "b1b0b0b0-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
+		"name": "API Rate Limiter Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rule",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client_id\": \"test_client\",\n    \"endpoint_pattern\": \"/demo/orders\",\n    \"max_requests\": 5,\n    \"window_seconds\": 60,\n    \"plan_tier\": \"FREE\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/rules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Rules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/rules/test_client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rules",
+						"test_client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hit Demo Endpoint (Orders)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "test_client"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/demo/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"demo",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Usage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/usage/test_client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"usage",
+						"test_client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Rule",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/rules/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rules",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
